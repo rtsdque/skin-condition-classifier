@@ -21,3 +21,6 @@ Thumbs.db
 
 # Environment variables
 .env
+
+# Kaggle API credentials
+kaggle.json
