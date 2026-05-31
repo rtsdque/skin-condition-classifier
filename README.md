@@ -6,8 +6,6 @@ An educational machine learning project that classifies skin conditions from upl
 
 > ⚕️ **Medical disclaimer:** SkinScan is an educational project and is not a medical diagnostic tool. Results are not a substitute for professional medical advice. Always consult a qualified dermatologist. Skin conditions are medical issues — not hygiene failures.
 
----
-
 ## What it does
 
 - Upload a photo of a skin condition and receive an instant prediction across 15 conditions
@@ -16,8 +14,6 @@ An educational machine learning project that classifies skin conditions from upl
 - Ingredient recommendations — what to look for and what to avoid — specific to the predicted condition
 - AI-powered personalised skincare advice via the Claude API
 - Model insights page with training data distribution, per-class F1 accuracy, notable confusions, and honest limitations
-
----
 
 ## Model
 
@@ -34,8 +30,6 @@ An educational machine learning project that classifies skin conditions from upl
 ### Why 59.3% is meaningful
 
 Random guessing across 15 classes would yield 6.7%. The model performs nearly 9× better than chance. Many of the misclassifications are clinically logical — eczema and atopic dermatitis are the same condition under different names, and psoriasis/tinea/seborrheic keratoses all involve scaly patches that challenge even dermatologists.
-
----
 
 ## Classes
 
@@ -57,14 +51,10 @@ Random guessing across 15 classes would yield 6.7%. The model performs nearly 9�
 | Urticaria (Hives) | DermNet | 265 |
 | Warts | DermNet | 1,000 |
 
----
-
 ## Datasets
 
 - **[DermNet](https://www.kaggle.com/datasets/shubhamgoel27/dermnet)** — 23 categories of skin disease images sourced from DermNet NZ via Kaggle
 - **[ACNE04](https://www.kaggle.com/datasets/jincyjis/acne04)** — Acne severity dataset with dermatologist annotations. Wu et al., *Joint Acne Image Grading and Counting*, ICCV 2019
-
----
 
 ## Tech stack
 
@@ -74,8 +64,6 @@ Random guessing across 15 classes would yield 6.7%. The model performs nearly 9�
 - **AI advice:** Anthropic Claude API
 - **Model hosting:** Hugging Face Hub
 - **Deployment:** Streamlit Community Cloud
-
----
 
 ## Run locally
 
@@ -103,24 +91,6 @@ The model file (`skin_classifier.pt`) is hosted on Hugging Face and downloads au
 
 To retrain the model, open `notebooks/skin_classifier_pipeline.ipynb` in Google Colab with a T4 GPU runtime and run all cells.
 
----
-
-## Project structure
-
-```
-skin-condition-classifier/
-├── app/
-│   └── app.py                  # Streamlit application
-├── model/
-│   └── class_names.txt         # Class label mapping
-├── notebooks/
-│   └── skin_classifier_pipeline.ipynb  # Full training pipeline
-├── requirements.txt
-└── README.md
-```
-
----
-
 ## Limitations
 
 - **Skin tone bias** — Both datasets skew toward lighter skin tones. Performance on darker skin tones has not been systematically evaluated and is likely lower.
@@ -128,20 +98,14 @@ skin-condition-classifier/
 - **Small classes** — Cellulitis (361 images) and urticaria (265 images) are underrepresented and the model is measurably weaker on these.
 - **Not a diagnostic tool** — This is an educational ML project. No prediction should be used as a substitute for professional medical evaluation.
 
----
-
 ## Related projects
 
 This project is part of a broader portfolio focus on healthcare and data science:
 
 - **[Accutane Analytics](https://accutaneanalytics.streamlit.app/)** — Data analytics dashboard exploring Accutane (isotretinoin) usage, side effects, and outcomes. Built with Python and Streamlit. [GitHub →](https://github.com/rtsdque/accutane-analytics)
 
----
-
 ## Privacy
 
 Uploaded photos are never stored or transmitted. All inference happens in-memory and images are discarded immediately after prediction. The only external call made is to the Claude API, which receives only the predicted condition name and confidence score — not the photo.
-
----
 
 *Built with PyTorch, MobileNetV2, and Streamlit. Educational portfolio project.*
