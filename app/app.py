@@ -50,7 +50,17 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; }
 """, unsafe_allow_html=True)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
-MODEL_PATH    = os.path.join(os.path.dirname(__file__), '..', 'model', 'skin_classifier.pt')
+MODEL_PATH = os.path.join(os.path.dirname(__file__), '..', 'model', 'skin_classifier.pt')
+HF_MODEL_URL = 'https://huggingface.co/rtsdque/skinscan-model/resolve/main/skin_classifier.pt'
+
+def ensure_model_downloaded():
+    if not os.path.exists(MODEL_PATH):
+        os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+        import urllib.request
+        with st.spinner('Downloading model from Hugging Face (first run only, ~14MB)...'):
+            urllib.request.urlretrieve(HF_MODEL_URL, MODEL_PATH)
+
+ensure_model_downloaded()
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD  = [0.229, 0.224, 0.225]
 
